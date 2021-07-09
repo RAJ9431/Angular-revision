@@ -1,0 +1,112 @@
+
+<!-- FIRST CHAPTER -->
+<p>This chapter is about bindings</p>
+<button (click)="firstChap=!firstChap">FIRST CHAPTER</button>
+<!-- Use of structural directive  -->
+<div *ngIf="firstChap">
+
+<!-- Interpolation -->
+<!-- Getting data from template -->
+<h1 class="special">Interpolation</h1>
+<h4>{{hello}}</h4>
+
+
+<!-- Property binding -->
+<!-- As HTML elements are treated as javascript objects, it has some ptoperties like value etc -->
+<!-- To set the property we use property binding -->
+<h1 class="special">Property binding</h1>
+<p>To view property console log $0.getAttribute('value') and $0.value</p>
+<p>Property is saves as attributes, so console.log $0.getAttribute('id') </p>
+<input type="text" value="message" [id]="search"><br>
+<!-- property set by binding can be found as attribute in console , but it is not attribute -->
+<!-- Another way of property binding -->
+<input type="text" value="disables" [id]="'Disabled'" bind-disabled="status">
+<br><br>
+
+
+<!-- Class binding [could be css class] -->
+<h1 class="special">Class binding</h1>
+<!-- Directly -->
+<h4 class="success">Success</h4>
+<!-- Using class binding to assign css class to an element, here warnClass is function defined in ts class -->
+<h4 [class]="warnClass">Warning</h4>
+<!-- Class binding and simple assignment of class results ambiguous result-->
+<h4  class="success" [class]="warnClass">Shows ambiguity</h4>
+<!-- Applying condition for class binding -->
+<P [class.warn]="status">Pink shows input is disables. </P>
+<!-- to apply multiple classes, we use ngClass directive -->
+
+
+<!-- Style binding -->
+<!-- To manipulate style{appearance} -->
+<h1 class="special">Style binding</h1>
+<H4 [style.color]="'orange'">Style binding</H4>
+<!-- We could also pass boolean expression -->
+<!-- to apply multiple styles, we use ngStyle directive -->
+
+
+<!-- Event binding -->
+<!-- Sending data to class and setting the value of a property of component class-->
+<!-- Function used is event handler which is defined in ts file -->
+<h1 class="special">Event binding</h1>
+<button (click)="onClick()">event</button>
+{{greet}}  <br>
+<!-- We could pass event as parameter also -->
+<!-- $event is special character for angular -->
+<button (click)="show($event)">show</button><br>
+<!-- We could also write code in html/template statement instead of event handler  -->
+<button (click)="tempGreet='Hello from template'">event</button>
+{{tempGreet}}  <br>
+
+
+<!-- Template reference variable -->
+<!-- Used to communicate between components of template -->
+<h1 class="special">Template Reference Variable</h1>
+<input #entry type="text">
+<button (click)="show(entry.value)">enter</button>
+
+<!-- Two way binding -->
+<h1 class="special">Two way binding</h1>
+<!-- Sending data from template to class and the from class to template -->
+<!-- We do not require function as event binding -->
+<!-- Using ngModel, which should be imported in app.modules-->
+<input type="text" [(ngModel)]="twoWay">
+{{twoWay}}
+
+<!-- Component Interaction -->
+<h1 class="special">Component Interaction</h1>
+<!-- sending and recieving data  -->
+
+<app-test [info]="name" (childEvent)="message=$event"></app-test>
+<h4>{{message}}</h4>
+
+</div>
+
+<!-- SECOND CHAPTER -->
+<p>This chapter is about pipes and services</p>
+<button (click)="secondChap=!secondChap">SECOND CHAPTER</button>
+<!-- Use of structural directive  -->
+<div *ngIf="secondChap">
+  
+    <!-- Pipes are used to transform data before displaying  -->
+    <!-- Use of ngClass directive -->
+    <h1 [ngClass]="['special','warn']">Pipes</h1>
+     <p><b>Original</b> : {{pipeVar}}</p>
+     <p><b>uppercase</b> : {{pipeVar|uppercase}}</p>
+     <p><b>lowercase</b> : {{pipeVar|lowercase}}</p>
+     <p><b>titlecase</b> : {{pipeVar|titlecase}}</p>
+     <p><b>slice</b> : {{pipeVar|slice:3:-1}}</p>
+     <p><b>json</b> : {{objData|json}}</p>
+     <p><b>number</b> : {{9.8342|number:'3.1-2'}}</p>
+     <p><b>percent</b> : {{.8342|percent}}</p>
+     <p><b>currency</b> : {{51|currency:'INR'}}</p>
+     <p><b>currency(code)</b> : {{51|currency:'INR':'code'}}</p>
+     <p><b>date(raw)</b> : {{pipeDate}}</p>
+     <p><b>date(short)</b> : {{pipeDate|date:'short'}}</p>
+     <p><b>date(shortDate)</b> : {{pipeDate|date:'shortDate'}}</p>
+     <p><b>date(shortTime)</b> : {{pipeDate|date:'shortTime'}}</p>
+
+    
+</div>
+
+<router-outlet></router-outlet>

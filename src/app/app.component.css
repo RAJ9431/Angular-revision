@@ -1,0 +1,9 @@
+.success{
+    color: rgb(107, 151, 41);
+}
+.warn{
+    color: hotpink;
+}
+.special{
+    font-style: italic;
+}

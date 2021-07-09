@@ -1,0 +1,8 @@
+<!-- Data of parent component -->
+<h4>{{infocopy}}</h4>
+
+<!--Fire the event to be sent to parent component -->
+<h4>Get message from child</h4>
+<input type="text" #message>
+<!-- Get value of input field with help of template reference variable -->
+<button (click)="fire(message.value)">get</button>
